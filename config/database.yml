@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  user: lucasrusso
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: movies_api_development
+
+test:
+  <<: *default
+  database: movies_api_test
+
+production:
+  <<: *default
+  database: movies_api_production
+  username: movies_api
+  password: <%= ENV['MOVIES_API_DATABASE_PASSWORD'] %>
