@@ -3,7 +3,7 @@ class FilmsController < ApplicationController
 
   # GET /films
   def index
-    @films = Film.all
+    @films = @user.films.search(params[:title]).sorted_by_title
 
     render json: @films
   end
@@ -15,7 +15,7 @@ class FilmsController < ApplicationController
 
   # POST /films
   def create
-    @film = Film.new(film_params)
+    @film = @user.films.new(film_params)
 
     if @film.save
       render json: @film, status: :created, location: @film
@@ -46,6 +46,6 @@ class FilmsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def film_params
-      params.require(:film).permit(:title, :description, :author, :category_id)
+      params.require(:film).permit(:title, :description, :author, :category_id, :user_id)
     end
 end

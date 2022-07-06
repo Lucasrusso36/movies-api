@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :categories
+  has_many :films
   
   has_secure_password
   #mount_uploader :avatar, AvatarUploader
