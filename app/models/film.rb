@@ -2,7 +2,7 @@ class Film < ApplicationRecord
   belongs_to :category
   belongs_to :user
 
-   #has_one_attached :image
+   has_one_attached :image
   
    validates :title, presence: true, uniqueness: { case_sensitive: false }
    validates :description, presence: true
